@@ -15,6 +15,40 @@ if [ ! -e $DEVICE ]; then
 fi
 
 
+# Prompt user for consent
+
+# echo "WARNING: Formatting $DEVICE will erase all data on the device."
+# echo "Are you sure you want to continue? (y/n)"
+# read -r response
+
+# if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
+#     echo "Operation cancelled."
+#     exit 0
+# fi
+
+# Prompt user for consent
+while true; do
+    echo "WARNING: Formatting $DEVICE will erase all data on the device."
+    echo "Are you sure you want to continue? (y/n)"
+    read -r response
+
+    case $response in
+        y|Y)
+            break
+            ;;
+        n|N)
+            echo "Operation cancelled."
+            exit 0
+            ;;
+        *)
+            echo "Invalid input. Please enter 'y' or 'n'."
+            ;;
+    esac
+done
+
+
+
+
 # Erase SD card partition information
 echo "======================================="
 echo "Erasing SD card partition information..."
